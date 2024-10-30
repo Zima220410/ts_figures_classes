@@ -19,7 +19,7 @@ export class Triangle implements Figure {
     const [longest, side1, side2] = sides;
 
     if (this.a <= 0 || this.b <= 0 || this.c <= 0 || longest >= side1 + side2) {
-      throw new Error('your error message');
+      throw new Error('Invalid triangle dimensions');
     }
   }
 
@@ -39,7 +39,7 @@ export class Circle implements Figure {
     public radius: number,
   ) {
     if (this.radius <= 0) {
-      throw new Error('your error message');
+      throw new Error('negative radius');
     }
   }
 
@@ -55,21 +55,21 @@ export class Rectangle implements Figure {
 
   constructor(
     public color: Color,
-    public whidth: number,
+    public width: number,
     public height: number,
   ) {
-    if (this.whidth <= 0 || this.height <= 0) {
-      throw new Error('your error message');
+    if (this.width <= 0 || this.height <= 0) {
+      throw new Error('negative rectangle dimensions');
     }
   }
 
   getArea(): number {
-    const area = this.whidth * this.height;
+    const area = this.width * this.height;
 
     return Math.floor(area * 100) / 100;
   }
 }
 
-export function getInfo(figure): string {
+export function getInfo(figure: Triangle | Circle | Rectangle): string {
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
